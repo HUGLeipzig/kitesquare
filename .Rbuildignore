@@ -1,0 +1,9 @@
+^kitesquare\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^vignettes/*_files$
+^\.github$
+^\.gitlab-ci\.yml$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
