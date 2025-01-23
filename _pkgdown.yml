@@ -2,5 +2,8 @@ url: https://hugleipzig.github.io/kitesquare/
 template:
   bootstrap: 5
   bootswatch: cerulean
+  math-rendering: mathjax
   quiet: false
   verbose: true
+project:
+  render: ['*.qmd']
