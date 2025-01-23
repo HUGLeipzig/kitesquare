@@ -1,4 +1,4 @@
 url: https://hugleipzig.github.io/kitesquare/
 template:
   bootstrap: 5
-
+  bootswatch: cerulean
