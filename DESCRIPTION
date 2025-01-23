@@ -22,3 +22,5 @@ Imports:
 Suggests: 
 	knitr,
     quarto
+Config/Needs/website: quarto
+
