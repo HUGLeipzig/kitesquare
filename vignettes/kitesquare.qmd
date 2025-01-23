@@ -1,35 +1,12 @@
 ---
 title: Kite-Square Plots for Contingency Tables
-date: 2025-01-22
-author: 
-  name: John Wiedenhöft
-  affiliation: 
-    name: University of Leipzig Medical Center
-    department: Institute for Human Genetics
-    address: Philipp-Rosenthal-Str. 55
-    postal-code: 04103
-    city: Leipzig
-    country: Germany
-    url: https://www.uniklinikum-leipzig.de/einrichtungen/humangenetik
-  orcid: 0000-0002-6935-1517
-  degrees: PhD
-citation: true
-bibliography: kitesquare.bib
-google-scholar: true
-format: 
-  html:
-    toc: true
-    theme: cerulean
-    html-math-method: mathjax
-  pdf:
-    latex_engine: xelatex
 echo: false
 include: false
 warning: false
 error: false
 message: false
 vignette: >
-  %\VignetteIndexEntry{Kite-Square Plots}
+  %\VignetteIndexEntry{quarto vignettes}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
