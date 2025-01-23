@@ -3,6 +3,7 @@ template:
   bootstrap: 5
   bootswatch: cerulean
   math-rendering: mathjax
+  quarto.quiet: false
   quiet: false
   verbose: true
 project:
