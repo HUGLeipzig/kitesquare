@@ -23,6 +23,10 @@ format:
     html-math-method: mathjax
   pdf:
     latex_engine: xelatex
+  gfm:
+    toc: true
+    theme: cerulean
+    html-math-method: mathjax
 echo: false
 include: false
 warning: false
