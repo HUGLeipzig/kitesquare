@@ -2,8 +2,7 @@ Package: kitesquare
 Title: Vizualize Contingency Tables Using Kite-Square Plots
 Version: 0.0.1
 Authors@R:
-    person("John", "Wiedenhöft", , "john.wiedenhoeft@medizin.uni-leipzig.de", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-6935-1517"))
+	person("John", "Wiedenhöft", , "john.wiedenhoeft@medizin.uni-leipzig.de", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6935-1517"))
 Description: Creates a kite-square plot for contingency tables, using ggplot2. It displays all its relevant quantities (marginal, conditional, expected, observed, chi-squared) in an intuitive plot, which resembles a flying kite inside a square if the variables are independent, and deviates from this the more dependence exists.
 License: LGPL (>= 3)
 Encoding: UTF-8
@@ -21,5 +20,5 @@ Imports:
 	rlang
 Suggests: 
 	knitr,
-    quarto
+	quarto
 Config/Needs/website: quarto
