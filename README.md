@@ -40,7 +40,7 @@ their name for two reasons:
 
 <div id="fig-dependence-1">
 
-<img src="kitesquare_files/figure-commonmark/fig-dependence-1.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-dependence-1.png"
 data-ref-parent="fig-dependence" />
 
 (a) Independent variables, the plot resembles a kite inside a square
@@ -53,7 +53,7 @@ data-ref-parent="fig-dependence" />
 
 <div id="fig-dependence-2">
 
-<img src="kitesquare_files/figure-commonmark/fig-dependence-2.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-dependence-2.png"
 data-ref-parent="fig-dependence" />
 
 (b) Dependent, top-left and bottom-right are higher, the others are
@@ -139,7 +139,7 @@ position of the point.
 
 <div id="fig-kite-1">
 
-<img src="kitesquare_files/figure-commonmark/fig-kite-1.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-kite-1.png"
 data-ref-parent="fig-kite" />
 
 (a) Kite, representing $\mathbb{P}(X)\mathbb{P}(Y)$ or $E_{XY}$
@@ -152,7 +152,7 @@ data-ref-parent="fig-kite" />
 
 <div id="fig-kite-2">
 
-<img src="kitesquare_files/figure-commonmark/fig-kite-2.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-kite-2.png"
 data-ref-parent="fig-kite" />
 
 (b) Spars, representing $\mathbb{P}(X,Y)$ or $O_{XY}$
@@ -197,7 +197,7 @@ probability).
 
 <div id="fig-square-1">
 
-<img src="kitesquare_files/figure-commonmark/fig-square-1.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-square-1.png"
 data-ref-parent="fig-square" />
 
 (a) Square, indicating marginals $\mathbb{P}(X)$ and $\mathbb{P}(Y)$, or
@@ -211,7 +211,7 @@ $M_X$ and $M_Y$, respectively.
 
 <div id="fig-square-2">
 
-<img src="kitesquare_files/figure-commonmark/fig-square-2.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-square-2.png"
 data-ref-parent="fig-square" />
 
 (b) Bars, indicating conditionals $\mathbb{P}(X|Y)$ and
@@ -240,7 +240,7 @@ towards the overfull cell.
 
 <div id="fig-itspatch-1">
 
-<img src="kitesquare_files/figure-commonmark/fig-itspatch-1.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-itspatch-1.png"
 data-ref-parent="fig-itspatch" />
 
 (a) Intersections, indicating marginals $\mathbb{P}(X)$ and
@@ -254,7 +254,7 @@ $\mathbb{P}(Y)$, or $M_X$ and $M_Y$, respectively.
 
 <div id="fig-itspatch-2">
 
-<img src="kitesquare_files/figure-commonmark/fig-itspatch-2.png"
+<img src="vignettes/kitesquare_files/figure-commonmark/fig-itspatch-2.png"
 data-ref-parent="fig-itspatch" />
 
 (b) Patches, indicating $\chi^2$ for counts, and $\frac{\chi^2}{N}$ for
@@ -407,7 +407,7 @@ kitesquare(df_2x4, X, Y, count, fill=TRUE)
 
 <div id="fig-centered">
 
-![](kitesquare_files/figure-commonmark/fig-centered-1.png)
+![](vignettes/kitesquare_files/figure-commonmark/fig-centered-1.png)
 
 Figure 5: Kite-square plot for a 2x4 matrix, with the binary variable
 centered.
@@ -420,7 +420,7 @@ kitesquare(df_2x4, X, Y, count, fill=TRUE, center=FALSE)
 
 <div id="fig-noncentered">
 
-![](kitesquare_files/figure-commonmark/fig-noncentered-1.png)
+![](vignettes/kitesquare_files/figure-commonmark/fig-noncentered-1.png)
 
 Figure 6: Kite-square plot for a 2x4 matrix, with the binary variable
 non-centered.
