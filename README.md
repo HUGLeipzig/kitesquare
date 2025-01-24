@@ -94,7 +94,7 @@ Table 1: Different quantities derived from contingency tables.
 | marginal | $M_X$ | $\mathbb{P}(X)$ |
 | expected joint | $E_{XY}$ | $\mathbb{P}(X)\mathbb{P}(Y)$ |
 | observed joint | $O_{XY}$ | $\mathbb{P}(X,Y)$ |
-| (observed) conditional | $O_{X|Y}$ | $\mathbb{P}(X|Y)$ |
+| (observed) conditional | $O_{X\mid Y}$ | $\mathbb{P}(X\mid Y)$ |
 
 </div>
 
