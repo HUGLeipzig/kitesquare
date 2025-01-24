@@ -2,6 +2,10 @@
 John Wiedenhöft
 2025-01-22
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 - [Abstract](#abstract)
 - [Introduction](#introduction)
 - [Joint quantities](#joint-quantities)
@@ -280,15 +284,15 @@ representing that discrepancy is **equal to $\chi^2$ for unnormalized
 and $\frac{\chi^2}{N}$ for normalized data**. This is because for
 
 $$
-\chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
+\chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}
 $$ with $$
-\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}} 
+\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}
 $$ we have $$
-\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)} 
+\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)}
 $$ $$
-=  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)} 
+=  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)}
 $$ $$
-= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
+= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}
 $$ and hence $$
 \chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
 $$ In other words, the edges of each patch represent the difference
