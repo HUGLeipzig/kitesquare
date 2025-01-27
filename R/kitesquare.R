@@ -530,11 +530,13 @@ kitesquare <- function(
 
   g$table <- df_ks
 
+  quantity <- ifelse(normalize, "Probabilities", "Counts")
+
   g <- g +
     ggplot2::theme(aspect.ratio = 1,
                    panel.spacing = ggplot2::unit(0, "line")) +
-    ggplot2::xlab(rlang::as_name(enquo(x))) +
-    ggplot2::ylab(rlang::as_name(enquo(y)))
+    ggplot2::xlab(paste(quantity, "of", rlang::as_name(enquo(x)))) +
+    ggplot2::ylab(paste(quantity, "of", rlang::as_name(enquo(y))))
 
   return(g)
 }
