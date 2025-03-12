@@ -1,6 +1,7 @@
 ---
 title: Kite-Square Plots for Contingency Tables
-date: 2025-01-22
+date: last-modified
+date-format: iso
 author: 
   name: John Wiedenhöft
   affiliation: 
@@ -13,7 +14,9 @@ author:
     url: https://www.uniklinikum-leipzig.de/einrichtungen/humangenetik
   orcid: 0000-0002-6935-1517
   degrees: PhD
-citation: true
+citation:
+  id: kitesquare
+  url: https://github.com/HUGLeipzig/kitesquare
 bibliography: kitesquare.bib
 google-scholar: true
 format: 
@@ -22,7 +25,8 @@ format:
     theme: cerulean
     html-math-method: mathjax
   pdf:
-    latex_engine: xelatex
+    mathspec: true
+    pdf-engine: lualatex
   gfm:
     toc: true
     theme: cerulean

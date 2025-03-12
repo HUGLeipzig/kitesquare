@@ -1,8 +1,11 @@
 #' Create a kite-square plot
 #'
+#' @description
+#' Given a data frame or tibble, creates a kite-square plot to visualize the contingency table of two discrete variables.
+#'
 #' @param df A tibble or data frame of observations.
 #' @param x,y Name of the variable in `df` for x (columns) and y (rows), as string or expression.
-#' @param obs Name of observation counts in `df`. If a combination of `y` and `x` appears multiple times in `df`, `obs` are added together.
+#' @param obs Name of observation counts in `df`. If a combination of `y` and `x` appears multiple times in `df`, `obs` are added together. If not provided, a value of 1 will be assumed for each line in `df`.
 #' @param normalize Should values te normalized to probabilities and expressed in percent?
 #' @param full_range If `normalize` is TRUE, should all axes limits be from 0 to 1?
 #' @param center_x,center_y,center Should a binary x or y variable be centered (axis reversed) so that the spars meet? `center` overrides both.
@@ -20,10 +23,17 @@
 #' @param dodge_x The number of levels the x axis labels should dodge.
 #' @param ... Further arguments passed to ggplot2::facet_grid().
 #'
-#' @return A ggplot object, with an extra $table key. The latter contains the tibble used internally for plotting.
+#' @return A ggplot object, with an extra $table key. The latter contains the tibble of coordinates created internally for plotting.
 #' @importFrom dplyr %>%
 #' @export
 #'
+#' @examples
+#' df <- dplyr::tibble(
+#'   X=c('A', 'A', 'B', 'B', 'B'),
+#'   Y=c('U', 'V', 'U', 'V', 'V'),
+#'   count=c(30,15,30,70,65))
+#' kitesquare(df, X, Y, count)
+#' kitesquare(df, X, Y, count, normalize=TRUE, center_x=FALSE)
 kitesquare <- function(
     df,
     x,
@@ -32,8 +42,8 @@ kitesquare <- function(
 
     # Options affecting overall appearance
 
-    normalize=F,
-    full_range=F,
+    normalize=FALSE,
+    full_range=FALSE,
 
     center_x=TRUE,
     center_y=TRUE,

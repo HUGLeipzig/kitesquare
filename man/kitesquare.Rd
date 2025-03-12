@@ -9,8 +9,8 @@ kitesquare(
   x,
   y,
   obs,
-  normalize = F,
-  full_range = F,
+  normalize = FALSE,
+  full_range = FALSE,
   center_x = TRUE,
   center_y = TRUE,
   center = NULL,
@@ -49,7 +49,7 @@ kitesquare(
 
 \item{x, y}{Name of the variable in \code{df} for x (columns) and y (rows), as string or expression.}
 
-\item{obs}{Name of observation counts in \code{df}. If a combination of \code{y} and \code{x} appears multiple times in \code{df}, \code{obs} are added together.}
+\item{obs}{Name of observation counts in \code{df}. If a combination of \code{y} and \code{x} appears multiple times in \code{df}, \code{obs} are added together. If not provided, a value of 1 will be assumed for each line in \code{df}.}
 
 \item{normalize}{Should values te normalized to probabilities and expressed in percent?}
 
@@ -84,8 +84,16 @@ kitesquare(
 \item{...}{Further arguments passed to ggplot2::facet_grid().}
 }
 \value{
-A ggplot object, with an extra $table key. The latter contains the tibble used internally for plotting.
+A ggplot object, with an extra $table key. The latter contains the tibble of coordinates created internally for plotting.
 }
 \description{
-Create a kite-square plot
+Given a data frame or tibble, creates a kite-square plot to visualize the contingency table of two discrete variables.
+}
+\examples{
+df <- dplyr::tibble(
+  X=c('A', 'A', 'B', 'B', 'B'),
+  Y=c('U', 'V', 'U', 'V', 'V'),
+  count=c(30,15,30,70,65))
+kitesquare(df, X, Y, count)
+kitesquare(df, X, Y, count, normalize=TRUE, center_x=FALSE)
 }
