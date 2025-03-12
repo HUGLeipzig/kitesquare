@@ -21,6 +21,7 @@
 #' @param ... Further arguments passed to ggplot2::facet_grid().
 #'
 #' @return A ggplot object, with an extra $table key. The latter contains the tibble used internally for plotting.
+#' @importFrom dplyr %>%
 #' @export
 #'
 kitesquare <- function(
@@ -114,7 +115,7 @@ kitesquare <- function(
       dplyr::select(
         x={{x}},
         y={{y}}) %>%
-      mutate(count=1)
+      dplyr::mutate(count=1)
   } else {
     df_ks <-
       df_ks %>%
@@ -127,7 +128,7 @@ kitesquare <- function(
   df_ks <-
     df_ks %>%
     dplyr::arrange(x,y) %>%
-    dplyr::mutate(across(c(x,y), as.factor)) %>%
+    dplyr::mutate(dplyr::across(c(x,y), as.factor)) %>%
     dplyr::group_by(x,y) %>%
     dplyr::mutate(count=sum(count)) %>%
     dplyr::ungroup() %>%
@@ -203,7 +204,7 @@ kitesquare <- function(
       xkitersect = 2*xykite*(1-xykite/xmarg),
       ykitersect = 2*xykite*(1-xykite/ymarg)) %>%
 
-    dplyr::mutate(across(-c(x,y,count),  ~ .*N))
+    dplyr::mutate(dplyr::across(-c(x,y,count),  ~ .*N))
 
   # setup the plot
   g <- ggplot2::ggplot(data=df_ks)
@@ -535,8 +536,8 @@ kitesquare <- function(
   g <- g +
     ggplot2::theme(aspect.ratio = 1,
                    panel.spacing = ggplot2::unit(0, "line")) +
-    ggplot2::xlab(paste(quantity, "of", rlang::as_name(enquo(x)))) +
-    ggplot2::ylab(paste(quantity, "of", rlang::as_name(enquo(y))))
+    ggplot2::xlab(paste(quantity, "of", rlang::as_name(rlang::enquo(x)))) +
+    ggplot2::ylab(paste(quantity, "of", rlang::as_name(rlang::enquo(y))))
 
   return(g)
 }
