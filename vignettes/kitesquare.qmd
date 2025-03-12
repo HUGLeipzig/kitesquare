@@ -26,7 +26,6 @@ format:
     html-math-method: mathjax
   pdf:
     mathspec: true
-    pdf-engine: lualatex
   gfm:
     toc: true
     theme: cerulean

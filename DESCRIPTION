@@ -1,5 +1,5 @@
 Package: kitesquare
-Title: Vizualize Contingency Tables Using Kite-Square Plots
+Title: Visualize Contingency Tables Using Kite-Square Plots
 Version: 0.0.1
 Authors@R:
 	person("John", "Wiedenhöft", , "john.wiedenhoeft@medizin.uni-leipzig.de", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-6935-1517"))

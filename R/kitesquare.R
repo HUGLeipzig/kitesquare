@@ -10,16 +10,16 @@
 #' @param full_range If `normalize` is TRUE, should all axes limits be from 0 to 1?
 #' @param center_x,center_y,center Should a binary x or y variable be centered (axis reversed) so that the spars meet? `center` overrides both.
 #' @param fill_x,fill_y,fill Should the space between x or y bars and the axis be filled? `fill` overrides both.
-#' @param kite,square,spars,chi2 Should the kite, square, spars and χ² patches be drawn?
+#' @param kite,square,spars,chi2 Should the kite, square, spars and \eqn{\chi^2} patches be drawn?
 #' @param bars_x,bars_y,bars Should the bars for the x and y variables be drawn? `bars` overrides both.
 #' @param intersect_x,intersect_y,intersect Should the intersect positions for x and y variables with their axes be drawn? `intersect` overrides both.
 #' @param color_x,color_y Colors for x and y.
-#' @param kite_color,square_color,spars_color,chi2_color Color of the kite, square, spars and χ² patches.
-#' @param alpha_fill,alpha_chi2,alpha Transparency for fill and χ² patches. `alpha` overrides both.
+#' @param kite_color,square_color,spars_color,chi2_color Color of the kite, square, spars and \eqn{\chi^2} patches.
+#' @param alpha_fill,alpha_chi2,alpha Transparency for fill and \eqn{\chi^2} patches. `alpha` overrides both.
 #' @param pointsize The point size for intersects and spars.
 #' @param linewidth The line width for bars and spars.
 #' @param whisker_length The length of bar whiskers.
-#' @param extend_whiskers Should the bar whiskers be extended to wrap around the χ² patches?
+#' @param extend_whiskers Should the bar whiskers be extended to wrap around the \eqn{\chi^2} patches?
 #' @param dodge_x The number of levels the x axis labels should dodge.
 #' @param ... Further arguments passed to ggplot2::facet_grid().
 #'

@@ -59,7 +59,7 @@ kitesquare(
 
 \item{fill_x, fill_y, fill}{Should the space between x or y bars and the axis be filled? \code{fill} overrides both.}
 
-\item{kite, square, spars, chi2}{Should the kite, square, spars and χ² patches be drawn?}
+\item{kite, square, spars, chi2}{Should the kite, square, spars and \eqn{\chi^2} patches be drawn?}
 
 \item{bars_x, bars_y, bars}{Should the bars for the x and y variables be drawn? \code{bars} overrides both.}
 
@@ -67,9 +67,9 @@ kitesquare(
 
 \item{color_x, color_y}{Colors for x and y.}
 
-\item{kite_color, square_color, spars_color, chi2_color}{Color of the kite, square, spars and χ² patches.}
+\item{kite_color, square_color, spars_color, chi2_color}{Color of the kite, square, spars and \eqn{\chi^2} patches.}
 
-\item{alpha_fill, alpha_chi2, alpha}{Transparency for fill and χ² patches. \code{alpha} overrides both.}
+\item{alpha_fill, alpha_chi2, alpha}{Transparency for fill and \eqn{\chi^2} patches. \code{alpha} overrides both.}
 
 \item{pointsize}{The point size for intersects and spars.}
 
@@ -77,7 +77,7 @@ kitesquare(
 
 \item{whisker_length}{The length of bar whiskers.}
 
-\item{extend_whiskers}{Should the bar whiskers be extended to wrap around the χ² patches?}
+\item{extend_whiskers}{Should the bar whiskers be extended to wrap around the \eqn{\chi^2} patches?}
 
 \item{dodge_x}{The number of levels the x axis labels should dodge.}
 
