@@ -15,6 +15,7 @@
 #' @param intersect_x,intersect_y,intersect Should the intersect positions for x and y variables with their axes be drawn? `intersect` overrides both.
 #' @param color_x,color_y Colors for x and y.
 #' @param kite_color,square_color,spars_color,chi2_color Color of the kite, square, spars and \eqn{\chi^2} patches.
+#' @param border_color Color for the border around each cell.
 #' @param alpha_fill,alpha_chi2,alpha Transparency for fill and \eqn{\chi^2} patches. `alpha` overrides both.
 #' @param pointsize The point size for intersects and spars.
 #' @param linewidth The line width for bars and spars.
@@ -78,9 +79,12 @@ kitesquare <- function(
     spars_color="black",
     chi2_color="#bebebe",
 
+    border_color="black",
+
     alpha_fill=0.3,
     alpha_chi2=0.3,
     alpha=NULL,
+
 
     # Miscellaneous
 
@@ -545,7 +549,8 @@ kitesquare <- function(
 
   g <- g +
     ggplot2::theme(aspect.ratio = 1,
-                   panel.spacing = ggplot2::unit(0, "line")) +
+                   panel.spacing = ggplot2::unit(0, "line"),
+                   panel.border = ggplot2::element_rect(color=border_color)) +
     ggplot2::xlab(paste(quantity, "of", rlang::as_name(rlang::enquo(x)))) +
     ggplot2::ylab(paste(quantity, "of", rlang::as_name(rlang::enquo(y))))
 

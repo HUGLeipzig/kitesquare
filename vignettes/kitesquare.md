@@ -1,6 +1,6 @@
 # Kite-Square Plots for Contingency Tables
 John Wiedenhöft
-2025-03-12
+2025-03-13
 
 - [Abstract](#abstract)
 - [Introduction](#introduction)

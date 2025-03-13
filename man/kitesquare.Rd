@@ -33,6 +33,7 @@ kitesquare(
   square_color = "black",
   spars_color = "black",
   chi2_color = "#bebebe",
+  border_color = "black",
   alpha_fill = 0.3,
   alpha_chi2 = 0.3,
   alpha = NULL,
@@ -68,6 +69,8 @@ kitesquare(
 \item{color_x, color_y}{Colors for x and y.}
 
 \item{kite_color, square_color, spars_color, chi2_color}{Color of the kite, square, spars and \eqn{\chi^2} patches.}
+
+\item{border_color}{Color for the border around each cell.}
 
 \item{alpha_fill, alpha_chi2, alpha}{Transparency for fill and \eqn{\chi^2} patches. \code{alpha} overrides both.}
 

@@ -9,3 +9,5 @@
 ^pkgdown$
 ^readme_files
 ^cran-comments\.md$
+^revdep$
+^CRAN-SUBMISSION$
