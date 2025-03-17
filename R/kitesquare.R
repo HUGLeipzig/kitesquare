@@ -35,6 +35,8 @@
 #'   count=c(30,15,30,70,65))
 #' kitesquare(df, X, Y, count)
 #' kitesquare(df, X, Y, count, normalize=TRUE, center_x=FALSE)
+
+
 kitesquare <- function(
     df,
     x,
@@ -95,6 +97,7 @@ kitesquare <- function(
     dodge_x=2,
     ... #  TODO this does not work properly
 ){
+
 
   # Parameter overrides
   if (!is.null(bars)){
@@ -556,3 +559,6 @@ kitesquare <- function(
 
   return(g)
 }
+
+# make devtools::check() ignore the NSE variables inside dplyr verbs etc.
+utils::globalVariables(c("count", "prop", "xkitersect", "xmarg", "xmax", "xmin", "xprop", "xykite", "ykitersect", "ymarg", "ymax", "ymin", "yprop"))
