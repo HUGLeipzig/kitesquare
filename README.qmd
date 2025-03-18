@@ -1,0 +1,21 @@
+---
+format:
+  gfm:
+    toc: true
+    theme: cerulean
+    html-math-method: mathjax
+knitr:
+  opts_chunk:
+    fig.path: "man/figures/"
+bibliography: vignettes/kitesquare.bib
+---
+
+<!-- README.md is generated from README.qmd. -->
+
+```{r setup}
+# library(kitesquare)
+source("R/kitesquare.R")
+```
+
+
+{{< include body.qmd >}}

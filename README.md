@@ -1,10 +1,6 @@
 # Kite-Square Plots for Contingency Tables
 John Wiedenhöft
-2025-01-22
-
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
+last-modified
 
 - [Abstract](#abstract)
 - [Introduction](#introduction)
@@ -12,6 +8,15 @@ John Wiedenhöft
 - [Conditional and marginal
   quantities](#conditional-and-marginal-quantities)
 - [Usage](#usage)
+
+<!-- README.md is generated from README.qmd. -->
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/kitesquare.png)](https://CRAN.R-project.org/package=kitesquare)
+[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 ## Abstract
 
@@ -40,7 +45,7 @@ their name for two reasons:
 
 <div id="fig-dependence-1">
 
-<img src="readme_files/fig-dependence-1.png"
+<img src="man/figures/fig-dependence-1.png"
 data-ref-parent="fig-dependence" />
 
 (a) Independent variables, the plot resembles a kite inside a square
@@ -53,7 +58,7 @@ data-ref-parent="fig-dependence" />
 
 <div id="fig-dependence-2">
 
-<img src="readme_files/fig-dependence-2.png"
+<img src="man/figures/fig-dependence-2.png"
 data-ref-parent="fig-dependence" />
 
 (b) Dependent, top-left and bottom-right are higher, the others are
@@ -68,7 +73,8 @@ Figure 1: Kite-square plots for independent and dependent variables.
 </div>
 
 The R package `kitesquare` implements these plots using `ggplot2`. It is
-available at <https://github.com/HUGLeipzig/kitesquare>.
+available at <https://cran.r-project.org/package=kitesquare> as well as
+<https://github.com/HUGLeipzig/kitesquare>.
 
 ## Introduction
 
@@ -94,7 +100,7 @@ Table 1: Different quantities derived from contingency tables.
 | marginal | $M_X$ | $\mathbb{P}(X)$ |
 | expected joint | $E_{XY}$ | $\mathbb{P}(X)\mathbb{P}(Y)$ |
 | observed joint | $O_{XY}$ | $\mathbb{P}(X,Y)$ |
-| (observed) conditional | $O_{X\mid Y}$ | $\mathbb{P}(X\mid Y)$ |
+| (observed) conditional | $O_{X|Y}$ | $\mathbb{P}(X|Y)$ |
 
 </div>
 
@@ -139,8 +145,7 @@ position of the point.
 
 <div id="fig-kite-1">
 
-<img src="readme_files/fig-kite-1.png"
-data-ref-parent="fig-kite" />
+<img src="man/figures/fig-kite-1.png" data-ref-parent="fig-kite" />
 
 (a) Kite, representing $\mathbb{P}(X)\mathbb{P}(Y)$ or $E_{XY}$
 
@@ -152,8 +157,7 @@ data-ref-parent="fig-kite" />
 
 <div id="fig-kite-2">
 
-<img src="readme_files/fig-kite-2.png"
-data-ref-parent="fig-kite" />
+<img src="man/figures/fig-kite-2.png" data-ref-parent="fig-kite" />
 
 (b) Spars, representing $\mathbb{P}(X,Y)$ or $O_{XY}$
 
@@ -197,8 +201,7 @@ probability).
 
 <div id="fig-square-1">
 
-<img src="readme_files/fig-square-1.png"
-data-ref-parent="fig-square" />
+<img src="man/figures/fig-square-1.png" data-ref-parent="fig-square" />
 
 (a) Square, indicating marginals $\mathbb{P}(X)$ and $\mathbb{P}(Y)$, or
 $M_X$ and $M_Y$, respectively.
@@ -211,8 +214,7 @@ $M_X$ and $M_Y$, respectively.
 
 <div id="fig-square-2">
 
-<img src="readme_files/fig-square-2.png"
-data-ref-parent="fig-square" />
+<img src="man/figures/fig-square-2.png" data-ref-parent="fig-square" />
 
 (b) Bars, indicating conditionals $\mathbb{P}(X|Y)$ and
 $\mathbb{P}(Y|X)$, or $O_{X|Y}$ and $O_{Y|X}$, respectively
@@ -240,7 +242,7 @@ towards the overfull cell.
 
 <div id="fig-itspatch-1">
 
-<img src="readme_files/fig-itspatch-1.png"
+<img src="man/figures/fig-itspatch-1.png"
 data-ref-parent="fig-itspatch" />
 
 (a) Intersections, indicating marginals $\mathbb{P}(X)$ and
@@ -254,7 +256,7 @@ $\mathbb{P}(Y)$, or $M_X$ and $M_Y$, respectively.
 
 <div id="fig-itspatch-2">
 
-<img src="readme_files/fig-itspatch-2.png"
+<img src="man/figures/fig-itspatch-2.png"
 data-ref-parent="fig-itspatch" />
 
 (b) Patches, indicating $\chi^2$ for counts, and $\frac{\chi^2}{N}$ for
@@ -280,28 +282,22 @@ Intuitively, the discrepancy between the square and the bars provides a
 measure of association between $X$ and $Y$. It turns out that the area
 of the **patches**
 (<a href="#fig-itspatch-2" class="quarto-xref">Figure 4 (b)</a>)
-representing that discrepancy is **equal to** $\chi^2$ **for unnormalized
-and** $\frac{\chi^2}{N}$ **for normalized data**. This is because for
+representing that discrepancy is **equal to $N\chi^2$ for unnormalized
+and $\frac{\chi^2}{N}$ for normalized data**. This is because for
 
-$\chi^2 := \sum_{{X\in\{A,B\}; Y\in\{U,V\}}}\chi^2_{XY}$
-
-with
-
-$\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}$
-
-we have
-
-$\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)}$
-
-$= \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)}$
-
-$= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}$
-
-and hence
-
-$\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)$
-
-In other words, the edges of each patch represent the difference
+$$
+\chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
+$$ with $$
+\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}} 
+$$ we have $$
+\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)} 
+$$ $$
+=  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)} 
+$$ $$
+= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
+$$ and hence $$
+\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
+$$ In other words, the edges of each patch represent the difference
 between a expected (marginal) and observed conditional, and the area
 represents the contribution of each cell to the total $\chi^2$. The
 larger the patches, the higher the degree of statistical dependency
@@ -413,7 +409,7 @@ kitesquare(df_2x4, X, Y, count, fill=TRUE)
 
 <div id="fig-centered">
 
-![](readme_files/fig-centered-1.png)
+![](man/figures/fig-centered-1.png)
 
 Figure 5: Kite-square plot for a 2x4 matrix, with the binary variable
 centered.
@@ -426,7 +422,7 @@ kitesquare(df_2x4, X, Y, count, fill=TRUE, center=FALSE)
 
 <div id="fig-noncentered">
 
-![](readme_files/fig-noncentered-1.png)
+![](man/figures/fig-noncentered-1.png)
 
 Figure 6: Kite-square plot for a 2x4 matrix, with the binary variable
 non-centered.

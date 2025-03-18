@@ -1,6 +1,6 @@
 # Kite-Square Plots for Contingency Tables
 John Wiedenhöft
-2025-03-13
+2025-03-18
 
 - [Abstract](#abstract)
 - [Introduction](#introduction)
@@ -64,7 +64,8 @@ Figure 1: Kite-square plots for independent and dependent variables.
 </div>
 
 The R package `kitesquare` implements these plots using `ggplot2`. It is
-available at <https://github.com/HUGLeipzig/kitesquare>.
+available at <https://cran.r-project.org/package=kitesquare> as well as
+<https://github.com/HUGLeipzig/kitesquare>.
 
 ## Introduction
 
