@@ -9,8 +9,8 @@ kitesquare(
   x,
   y,
   obs,
-  normalize = F,
-  full_range = F,
+  normalize = FALSE,
+  full_range = FALSE,
   center_x = TRUE,
   center_y = TRUE,
   center = NULL,
@@ -33,6 +33,7 @@ kitesquare(
   square_color = "black",
   spars_color = "black",
   chi2_color = "#bebebe",
+  border_color = "black",
   alpha_fill = 0.3,
   alpha_chi2 = 0.3,
   alpha = NULL,
@@ -49,7 +50,7 @@ kitesquare(
 
 \item{x, y}{Name of the variable in \code{df} for x (columns) and y (rows), as string or expression.}
 
-\item{obs}{Name of observation counts in \code{df}. If a combination of \code{y} and \code{x} appears multiple times in \code{df}, \code{obs} are added together.}
+\item{obs}{Name of observation counts in \code{df}. If a combination of \code{y} and \code{x} appears multiple times in \code{df}, \code{obs} are added together. If not provided, a value of 1 will be assumed for each line in \code{df}.}
 
 \item{normalize}{Should values te normalized to probabilities and expressed in percent?}
 
@@ -59,7 +60,7 @@ kitesquare(
 
 \item{fill_x, fill_y, fill}{Should the space between x or y bars and the axis be filled? \code{fill} overrides both.}
 
-\item{kite, square, spars, chi2}{Should the kite, square, spars and χ² patches be drawn?}
+\item{kite, square, spars, chi2}{Should the kite, square, spars and \eqn{\chi^2} patches be drawn?}
 
 \item{bars_x, bars_y, bars}{Should the bars for the x and y variables be drawn? \code{bars} overrides both.}
 
@@ -67,9 +68,11 @@ kitesquare(
 
 \item{color_x, color_y}{Colors for x and y.}
 
-\item{kite_color, square_color, spars_color, chi2_color}{Color of the kite, square, spars and χ² patches.}
+\item{kite_color, square_color, spars_color, chi2_color}{Color of the kite, square, spars and \eqn{\chi^2} patches.}
 
-\item{alpha_fill, alpha_chi2, alpha}{Transparency for fill and χ² patches. \code{alpha} overrides both.}
+\item{border_color}{Color for the border around each cell.}
+
+\item{alpha_fill, alpha_chi2, alpha}{Transparency for fill and \eqn{\chi^2} patches. \code{alpha} overrides both.}
 
 \item{pointsize}{The point size for intersects and spars.}
 
@@ -77,15 +80,23 @@ kitesquare(
 
 \item{whisker_length}{The length of bar whiskers.}
 
-\item{extend_whiskers}{Should the bar whiskers be extended to wrap around the χ² patches?}
+\item{extend_whiskers}{Should the bar whiskers be extended to wrap around the \eqn{\chi^2} patches?}
 
 \item{dodge_x}{The number of levels the x axis labels should dodge.}
 
 \item{...}{Further arguments passed to ggplot2::facet_grid().}
 }
 \value{
-A ggplot object, with an extra $table key. The latter contains the tibble used internally for plotting.
+A ggplot object, with an extra $table key. The latter contains the tibble of coordinates created internally for plotting.
 }
 \description{
-Create a kite-square plot
+Given a data frame or tibble, creates a kite-square plot to visualize the contingency table of two discrete variables.
+}
+\examples{
+df <- dplyr::tibble(
+  X=c('A', 'A', 'B', 'B', 'B'),
+  Y=c('U', 'V', 'U', 'V', 'V'),
+  count=c(30,15,30,70,65))
+kitesquare(df, X, Y, count)
+kitesquare(df, X, Y, count, normalize=TRUE, center_x=FALSE)
 }

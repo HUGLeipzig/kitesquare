@@ -6,8 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="John Wiedenhöft">
-<meta name="dcterms.date" content="2025-01-22">
+<meta name="dcterms.date" content="2025-03-19">
 
 <title>Kite-Square Plots for Contingency Tables</title>
 <style>
@@ -102,12 +101,13 @@ window.Quarto = {
 
 <meta name="citation_title" content="Kite-Square Plots for Contingency Tables">
 <meta name="citation_author" content="John Wiedenhöft">
-<meta name="citation_publication_date" content="2025-01-22">
-<meta name="citation_cover_date" content="2025-01-22">
+<meta name="citation_publication_date" content="2025-03-19">
+<meta name="citation_cover_date" content="2025-03-19">
 <meta name="citation_year" content="2025">
-<meta name="citation_online_date" content="2025-01-22">
+<meta name="citation_online_date" content="2025-03-19">
+<meta name="citation_fulltext_html_url" content="https://cran.r-project.org/package=kitesquare">
 <meta name="citation_language" content="en">
-<meta name="citation_reference" content="citation_title=Kite-Square Plots for Contingency Tables;,citation_author=John Wiedenhöft;,citation_publication_date=2025-01-22;,citation_cover_date=2025-01-22;,citation_year=2025;,citation_language=en;">
+<meta name="citation_reference" content="citation_title=kitesquare: Visualize Contingency Tables Using Kite-Square Plots;,citation_author=John Wiedenhöft;,citation_publication_date=2025-03-17;,citation_cover_date=2025-03-17;,citation_year=2025;,citation_fulltext_html_url=https://cran.r-project.org/package=kitesquare;,citation_language=en;">
 </head>
 
 <body>
@@ -156,7 +156,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 22, 2025</p>
+      <p class="date">2025-03-19</p>
     </div>
   </div>
   
@@ -210,7 +210,7 @@ Figure&nbsp;1: Kite-square plots for independent and dependent variables.
 </figcaption>
 </figure>
 </div>
-<p>The R package <code>kitesquare</code> implements these plots using <code>ggplot2</code>. It is available at <a href="https://github.com/HUGLeipzig/kitesquare" class="uri">https://github.com/HUGLeipzig/kitesquare</a>.</p>
+<p>The R package <code>kitesquare</code> implements these plots using <code>ggplot2</code>. It is available at <a href="https://cran.r-project.org/package=kitesquare" class="uri">https://cran.r-project.org/package=kitesquare</a> as well as <a href="https://github.com/HUGLeipzig/kitesquare" class="uri">https://github.com/HUGLeipzig/kitesquare</a>.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -382,7 +382,7 @@ Figure&nbsp;4: Additional plot elements.
 </figure>
 </div>
 <p>Note that the axis labels are colored according to the bars with which they are associated. For clarity, kite-square plots have a colored point at the <strong>intersections</strong> of bars and axes, representing marginal probabilities/counts (<a href="#fig-itspatch-1" class="quarto-xref">Figure&nbsp;4 (a)</a>); notice that the intersections for <span class="math inline">\(X\)</span> sit on the bars for <span class="math inline">\(Y\)</span> and vice versa (<a href="#fig-dependence" class="quarto-xref">Figure&nbsp;1</a>).</p>
-<p>Intuitively, the discrepancy between the square and the bars provides a measure of association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It turns out that the area of the <strong>patches</strong> (<a href="#fig-itspatch-2" class="quarto-xref">Figure&nbsp;4 (b)</a>) representing that discrepancy is <strong>equal to <span class="math inline">\(\chi^2\)</span> for unnormalized and <span class="math inline">\(\frac{\chi^2}{N}\)</span> for normalized data</strong>. This is because for</p>
+<p>Intuitively, the discrepancy between the square and the bars provides a measure of association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It turns out that the area of the <strong>patches</strong> (<a href="#fig-itspatch-2" class="quarto-xref">Figure&nbsp;4 (b)</a>) representing that discrepancy is <strong>equal to <span class="math inline">\(N\chi^2\)</span> for unnormalized and <span class="math inline">\(\frac{\chi^2}{N}\)</span> for normalized data</strong>. This is because for</p>
 <p><span class="math display">\[
 \chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
 \]</span> with <span class="math display">\[
@@ -519,7 +519,7 @@ Table&nbsp;2: Contingency tables with counts for variables <span class="math inl
 <li><code>center_y</code></li>
 <li><code>center</code></li>
 </ul>
-<p>control whether (<a href="#fig-centered" class="quarto-xref">Figure&nbsp;5</a>) or not (<a href="#fig-noncentered" class="quarto-xref">Figure&nbsp;6</a>) centering should be performed for binary <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> or both. For larger non-centered plots, it is sometimes helpful to <strong>fill</strong> the space between bars and their associated axis using</p>
+<p>control whether (<a href="#fig-centered" class="quarto-xref">Figure&nbsp;5</a>) or not (<a href="#fig-noncentered" class="quarto-xref">Figure&nbsp;6</a>) centering should be performed for binary <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> or both. For larger non-centered plots, it is sometimes helpful to <strong>fill</strong> the space between bars and their associated axis (an area representing <span class="math inline">\(\mathbb{P}(X,Y)\)</span>) using</p>
 <ul>
 <li><code>fill_x</code></li>
 <li><code>fill_y</code></li>
@@ -558,15 +558,16 @@ Figure&nbsp;6: Kite-square plot for a 2x4 matrix, with the binary variable non-c
 <p>For details and further plotting options, please refer to the function documentation using <code>?kitesquare</code>.</p>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{wiedenhöft2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kitesquare,
   author = {Wiedenhöft, John},
   title = {Kite-Square {Plots} for {Contingency} {Tables}},
-  date = {2025-01-22},
+  date = {2025-03-19},
+  url = {https://cran.r-project.org/package=kitesquare},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-wiedenhöft2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kitesquare" class="csl-entry quarto-appendix-citeas" role="listitem">
 Wiedenhöft, John. 2025. <span>“Kite-Square Plots for Contingency
-Tables.”</span> January 22, 2025.
+Tables.”</span> March 19, 2025. <a href="https://cran.r-project.org/package=kitesquare">https://cran.r-project.org/package=kitesquare</a>.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,28 +1,42 @@
 #' Create a kite-square plot
 #'
+#' @description
+#' Given a data frame or tibble, creates a kite-square plot to visualize the contingency table of two discrete variables.
+#'
 #' @param df A tibble or data frame of observations.
 #' @param x,y Name of the variable in `df` for x (columns) and y (rows), as string or expression.
-#' @param obs Name of observation counts in `df`. If a combination of `y` and `x` appears multiple times in `df`, `obs` are added together.
+#' @param obs Name of observation counts in `df`. If a combination of `y` and `x` appears multiple times in `df`, `obs` are added together. If not provided, a value of 1 will be assumed for each line in `df`.
 #' @param normalize Should values te normalized to probabilities and expressed in percent?
 #' @param full_range If `normalize` is TRUE, should all axes limits be from 0 to 1?
 #' @param center_x,center_y,center Should a binary x or y variable be centered (axis reversed) so that the spars meet? `center` overrides both.
 #' @param fill_x,fill_y,fill Should the space between x or y bars and the axis be filled? `fill` overrides both.
-#' @param kite,square,spars,chi2 Should the kite, square, spars and χ² patches be drawn?
+#' @param kite,square,spars,chi2 Should the kite, square, spars and \eqn{\chi^2} patches be drawn?
 #' @param bars_x,bars_y,bars Should the bars for the x and y variables be drawn? `bars` overrides both.
 #' @param intersect_x,intersect_y,intersect Should the intersect positions for x and y variables with their axes be drawn? `intersect` overrides both.
 #' @param color_x,color_y Colors for x and y.
-#' @param kite_color,square_color,spars_color,chi2_color Color of the kite, square, spars and χ² patches.
-#' @param alpha_fill,alpha_chi2,alpha Transparency for fill and χ² patches. `alpha` overrides both.
+#' @param kite_color,square_color,spars_color,chi2_color Color of the kite, square, spars and \eqn{\chi^2} patches.
+#' @param border_color Color for the border around each cell.
+#' @param alpha_fill,alpha_chi2,alpha Transparency for fill and \eqn{\chi^2} patches. `alpha` overrides both.
 #' @param pointsize The point size for intersects and spars.
 #' @param linewidth The line width for bars and spars.
 #' @param whisker_length The length of bar whiskers.
-#' @param extend_whiskers Should the bar whiskers be extended to wrap around the χ² patches?
+#' @param extend_whiskers Should the bar whiskers be extended to wrap around the \eqn{\chi^2} patches?
 #' @param dodge_x The number of levels the x axis labels should dodge.
 #' @param ... Further arguments passed to ggplot2::facet_grid().
 #'
-#' @return A ggplot object, with an extra $table key. The latter contains the tibble used internally for plotting.
+#' @return A ggplot object, with an extra $table key. The latter contains the tibble of coordinates created internally for plotting.
+#' @importFrom dplyr %>%
 #' @export
 #'
+#' @examples
+#' df <- dplyr::tibble(
+#'   X=c('A', 'A', 'B', 'B', 'B'),
+#'   Y=c('U', 'V', 'U', 'V', 'V'),
+#'   count=c(30,15,30,70,65))
+#' kitesquare(df, X, Y, count)
+#' kitesquare(df, X, Y, count, normalize=TRUE, center_x=FALSE)
+
+
 kitesquare <- function(
     df,
     x,
@@ -31,8 +45,8 @@ kitesquare <- function(
 
     # Options affecting overall appearance
 
-    normalize=F,
-    full_range=F,
+    normalize=FALSE,
+    full_range=FALSE,
 
     center_x=TRUE,
     center_y=TRUE,
@@ -67,9 +81,12 @@ kitesquare <- function(
     spars_color="black",
     chi2_color="#bebebe",
 
+    border_color="black",
+
     alpha_fill=0.3,
     alpha_chi2=0.3,
     alpha=NULL,
+
 
     # Miscellaneous
 
@@ -80,6 +97,7 @@ kitesquare <- function(
     dodge_x=2,
     ... #  TODO this does not work properly
 ){
+
 
   # Parameter overrides
   if (!is.null(bars)){
@@ -114,7 +132,7 @@ kitesquare <- function(
       dplyr::select(
         x={{x}},
         y={{y}}) %>%
-      mutate(count=1)
+      dplyr::mutate(count=1)
   } else {
     df_ks <-
       df_ks %>%
@@ -127,7 +145,7 @@ kitesquare <- function(
   df_ks <-
     df_ks %>%
     dplyr::arrange(x,y) %>%
-    dplyr::mutate(across(c(x,y), as.factor)) %>%
+    dplyr::mutate(dplyr::across(c(x,y), as.factor)) %>%
     dplyr::group_by(x,y) %>%
     dplyr::mutate(count=sum(count)) %>%
     dplyr::ungroup() %>%
@@ -203,7 +221,7 @@ kitesquare <- function(
       xkitersect = 2*xykite*(1-xykite/xmarg),
       ykitersect = 2*xykite*(1-xykite/ymarg)) %>%
 
-    dplyr::mutate(across(-c(x,y,count),  ~ .*N))
+    dplyr::mutate(dplyr::across(-c(x,y,count),  ~ .*N))
 
   # setup the plot
   g <- ggplot2::ggplot(data=df_ks)
@@ -534,9 +552,13 @@ kitesquare <- function(
 
   g <- g +
     ggplot2::theme(aspect.ratio = 1,
-                   panel.spacing = ggplot2::unit(0, "line")) +
-    ggplot2::xlab(paste(quantity, "of", rlang::as_name(enquo(x)))) +
-    ggplot2::ylab(paste(quantity, "of", rlang::as_name(enquo(y))))
+                   panel.spacing = ggplot2::unit(0, "line"),
+                   panel.border = ggplot2::element_rect(color=border_color)) +
+    ggplot2::xlab(paste(quantity, "of", rlang::as_name(rlang::enquo(x)))) +
+    ggplot2::ylab(paste(quantity, "of", rlang::as_name(rlang::enquo(y))))
 
   return(g)
 }
+
+# make devtools::check() ignore the NSE variables inside dplyr verbs etc.
+utils::globalVariables(c("count", "prop", "xkitersect", "xmarg", "xmax", "xmin", "xprop", "xykite", "ykitersect", "ymarg", "ymax", "ymin", "yprop"))

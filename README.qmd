@@ -1,0 +1,26 @@
+---
+date: last-modified
+format:
+  gfm:
+    toc: true
+    theme: cerulean
+    html-math-method: mathjax
+knitr:
+  opts_chunk:
+    fig.path: "man/figures/"
+bibliography: vignettes/kitesquare.bib
+---
+
+<!-- README.md is generated from README.qmd. -->
+
+```{r setup}
+# library(kitesquare)
+source("R/kitesquare.R")
+```
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/kitesquare)](https://CRAN.R-project.org/package=kitesquare)
+<!-- badges: end -->
+
+{{< include inst/body.qmd >}}
