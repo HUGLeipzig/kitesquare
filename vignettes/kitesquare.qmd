@@ -1,4 +1,5 @@
 ---
+date: last-modified
 format: 
   html:
     toc: true
@@ -18,4 +19,4 @@ vignette: >
 source("../R/kitesquare.R")
 ```
 
-{{< include ../body.qmd >}}
+{{< include ../inst/body.qmd >}}
