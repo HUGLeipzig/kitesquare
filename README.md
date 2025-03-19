@@ -282,20 +282,26 @@ Intuitively, the discrepancy between the square and the bars provides a
 measure of association between $X$ and $Y$. It turns out that the area
 of the **patches**
 (<a href="#fig-itspatch-2" class="quarto-xref">Figure 4 (b)</a>)
-representing that discrepancy is **equal to $N\chi^2$ for unnormalized
-and $\frac{\chi^2}{N}$ for normalized data**. This is because for
+representing that discrepancy is equal to $N\chi^2$ for unnormalized and
+$\frac{\chi^2}{N}$ for normalized data. This is because for
 
 $$
 \chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
-$$ with $$
+$$ with
+
+$$
 \chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}} 
-$$ we have $$
+$$ we have
+
+$$
 \chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)} 
 $$ $$
 =  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)} 
 $$ $$
 = N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
-$$ and hence $$
+$$ and hence
+
+$$
 \chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
 $$ In other words, the edges of each patch represent the difference
 between a expected (marginal) and observed conditional, and the area
