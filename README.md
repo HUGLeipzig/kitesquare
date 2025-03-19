@@ -286,16 +286,22 @@ representing that discrepancy is equal to $N\chi^2$ for unnormalized and
 $\frac{\chi^2}{N}$ for normalized data. This is because for
 
 $$\chi^2 := \sum_{\substack{X\in\{A,B\}\\ Y\in\{U,V\}}}\chi^2_{XY}$$
+
 with
 
-$$\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}$$ we have
+$$\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}$$
+
+we have
 
 $$\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)}$$
+
 $$=  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)}$$
 $$= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}$$
+
 and hence
 
 $$\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)$$
+
 In other words, the edges of each patch represent the difference between
 a expected (marginal) and observed conditional, and the area represents
 the contribution of each cell to the total $\chi^2$. The larger the
