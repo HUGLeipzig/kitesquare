@@ -197,7 +197,6 @@ In the case of independence, the bars match the side of the square perfectly, si
 #|   - Patches, indicating $\chi^2$ for counts, and $\frac{\chi^2}{N}$ for normalized data.
 #| layout-ncol: 2
 
-
 kitesquare(df_dep, "X", "Y", "count", kite=F, bars=F, spars=F, intersect=T, square=F, chi2=F, normalize=T)
 kitesquare(df_dep, "X", "Y", "count", kite=F, bars=F, spars=F, intersect=F, square=F, chi2=T, normalize=T)
 ```

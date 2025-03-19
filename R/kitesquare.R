@@ -296,9 +296,8 @@ kitesquare <- function(
         fill=chi2_color,
         alpha=alpha_chi2
       )
-
-
   }
+
 
   ### Square ###
 
@@ -327,6 +326,7 @@ kitesquare <- function(
         linetype="dotted"
       )
   }
+
 
 
 
@@ -506,6 +506,7 @@ kitesquare <- function(
     )
 
 
+
   g <- g +
     ggplot2::xlim(0,xlim) +
     ggplot2::ylim(0,ylim)
@@ -553,7 +554,7 @@ kitesquare <- function(
   g <- g +
     ggplot2::theme(aspect.ratio = 1,
                    panel.spacing = ggplot2::unit(0, "line"),
-                   panel.border = ggplot2::element_rect(color=border_color)) +
+                   panel.border = ggplot2::element_rect(color=border_color, fill=NA)) +
     ggplot2::xlab(paste(quantity, "of", rlang::as_name(rlang::enquo(x)))) +
     ggplot2::ylab(paste(quantity, "of", rlang::as_name(rlang::enquo(y))))
 

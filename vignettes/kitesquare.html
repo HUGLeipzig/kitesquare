@@ -382,18 +382,21 @@ Figure&nbsp;4: Additional plot elements.
 </figure>
 </div>
 <p>Note that the axis labels are colored according to the bars with which they are associated. For clarity, kite-square plots have a colored point at the <strong>intersections</strong> of bars and axes, representing marginal probabilities/counts (<a href="#fig-itspatch-1" class="quarto-xref">Figure&nbsp;4 (a)</a>); notice that the intersections for <span class="math inline">\(X\)</span> sit on the bars for <span class="math inline">\(Y\)</span> and vice versa (<a href="#fig-dependence" class="quarto-xref">Figure&nbsp;1</a>).</p>
-<p>Intuitively, the discrepancy between the square and the bars provides a measure of association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It turns out that the area of the <strong>patches</strong> (<a href="#fig-itspatch-2" class="quarto-xref">Figure&nbsp;4 (b)</a>) representing that discrepancy is <strong>equal to <span class="math inline">\(N\chi^2\)</span> for unnormalized and <span class="math inline">\(\frac{\chi^2}{N}\)</span> for normalized data</strong>. This is because for</p>
+<p>Intuitively, the discrepancy between the square and the bars provides a measure of association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It turns out that the area of the <strong>patches</strong> (<a href="#fig-itspatch-2" class="quarto-xref">Figure&nbsp;4 (b)</a>) representing that discrepancy is equal to <span class="math inline">\(N\chi^2\)</span> for unnormalized and <span class="math inline">\(\frac{\chi^2}{N}\)</span> for normalized data. This is because for</p>
 <p><span class="math display">\[
 \chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
-\]</span> with <span class="math display">\[
+\]</span> with</p>
+<p><span class="math display">\[
 \chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}
-\]</span> we have <span class="math display">\[
+\]</span> we have</p>
+<p><span class="math display">\[
 \chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)}
 \]</span> <span class="math display">\[
 =  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)}
 \]</span> <span class="math display">\[
 = N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}
-\]</span> and hence <span class="math display">\[
+\]</span> and hence</p>
+<p><span class="math display">\[
 \chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
 \]</span> In other words, the edges of each patch represent the difference between a expected (marginal) and observed conditional, and the area represents the contribution of each cell to the total <span class="math inline">\(\chi^2\)</span>. The larger the patches, the higher the degree of statistical dependency between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 </section>
