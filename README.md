@@ -100,7 +100,7 @@ Table 1: Different quantities derived from contingency tables.
 | marginal | $M_X$ | $\mathbb{P}(X)$ |
 | expected joint | $E_{XY}$ | $\mathbb{P}(X)\mathbb{P}(Y)$ |
 | observed joint | $O_{XY}$ | $\mathbb{P}(X,Y)$ |
-| (observed) conditional | $O_{X|Y}$ | $\mathbb{P}(X|Y)$ |
+| (observed) conditional | $O_{X\mid Y}$ | $\mathbb{P}(X\mid Y)$ |
 
 </div>
 
@@ -108,11 +108,11 @@ Visualizing subsets of these quantities is easy. For instance, observed
 quantities are often shown using heatmaps, with each cell representing a
 unique combination of values of $X$ and $Y$. Conditional quantities are
 often shown using stacked or facetted barcharts (though visualizing both
-$O_{X|Y}$ and $O_{Y|X}$ in the same plot is challenging). However,
-combining *all* relevant quantities in a single plot is a different
-beast entirely. In addition, showing the *dependence* between the
-variables is often not a consideration (aside from adding p-values or
-$\chi^2$ statistics as text), even though it is perhaps the most
+$O_{X\mid Y}$ and $O_{Y\mid X}$ in the same plot is challenging).
+However, combining *all* relevant quantities in a single plot is a
+different beast entirely. In addition, showing the *dependence* between
+the variables is often not a consideration (aside from adding p-values
+or $\chi^2$ statistics as text), even though it is perhaps the most
 relevant quantity.
 
 Kite-square plots attempt to solve these issues, displaying all relevant
@@ -188,12 +188,12 @@ $(\mathbb{P}(X=A), \mathbb{P}(Y=U))$.
 
 The end points of the **bars**
 (<a href="#fig-square-2" class="quarto-xref">Figure 3 (b)</a>) indicate
-**conditional** probabilities $\mathbb{P}(X|Y)$ and $\mathbb{P}(Y|X)$,
-respectively (or their count equivalent for unnormalized data). For
-instance, in the top-left cell $(X=A,Y=U)$, the blue bar represents
-$\mathbb{P}(Y=U|X=A)$, while the red one represents
-$\mathbb{P}(X=A|Y=U)$. Notice that the length of each bar is 1 (total
-probability).
+**conditional** probabilities $\mathbb{P}(X\mid Y)$ and
+$\mathbb{P}(Y\mid X)$, respectively (or their count equivalent for
+unnormalized data). For instance, in the top-left cell $(X=A,Y=U)$, the
+blue bar represents $\mathbb{P}(Y=U\mid X=A)$, while the red one
+represents $\mathbb{P}(X=A\mid Y=U)$. Notice that the length of each bar
+is 1 (total probability).
 
 <div id="fig-square">
 
@@ -216,8 +216,8 @@ $M_X$ and $M_Y$, respectively.
 
 <img src="man/figures/fig-square-2.png" data-ref-parent="fig-square" />
 
-(b) Bars, indicating conditionals $\mathbb{P}(X|Y)$ and
-$\mathbb{P}(Y|X)$, or $O_{X|Y}$ and $O_{Y|X}$, respectively
+(b) Bars, indicating conditionals $\mathbb{P}(X\mid Y)$ and
+$\mathbb{P}(Y\mid X)$, or $O_{X\mid Y}$ and $O_{Y\mid X}$, respectively
 
 </div>
 
@@ -228,9 +228,9 @@ Figure 3: Elements related to conditional and marginal probabilities.
 </div>
 
 In the case of independence, the bars match the side of the square
-perfectly, since in that case $\mathbb{P}(X)=\mathbb{P}(X|Y)$ and
-$\mathbb{P}(Y)=\mathbb{P}(Y|X)$. As with the kite, bars sticking out of
-the square indicate higher values than expected
+perfectly, since in that case $\mathbb{P}(X)=\mathbb{P}(X\mid Y)$ and
+$\mathbb{P}(Y)=\mathbb{P}(Y\mid X)$. As with the kite, bars sticking out
+of the square indicate higher values than expected
 (<a href="#fig-dependence-2" class="quarto-xref">Figure 1 (b)</a>),
 whereas bars that fail to reach the square’s corner indicate lower
 values. Note that due to its fixed length, the bar appears shifted
@@ -298,11 +298,11 @@ $$
 $$ $$
 =  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)} 
 $$ $$
-= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
+= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
 $$ and hence
 
 $$
-\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
+\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)
 $$ In other words, the edges of each patch represent the difference
 between a expected (marginal) and observed conditional, and the area
 represents the contribution of each cell to the total $\chi^2$. The

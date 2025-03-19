@@ -253,15 +253,15 @@ Table&nbsp;1: Different quantities derived from contingency tables.
 </tr>
 <tr class="even">
 <td>(observed) conditional</td>
-<td><span class="math inline">\(O_{X|Y}\)</span></td>
-<td><span class="math inline">\(\mathbb{P}(X|Y)\)</span></td>
+<td><span class="math inline">\(O_{X\mid Y}\)</span></td>
+<td><span class="math inline">\(\mathbb{P}(X\mid Y)\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Visualizing subsets of these quantities is easy. For instance, observed quantities are often shown using heatmaps, with each cell representing a unique combination of values of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Conditional quantities are often shown using stacked or facetted barcharts (though visualizing both <span class="math inline">\(O_{X|Y}\)</span> and <span class="math inline">\(O_{Y|X}\)</span> in the same plot is challenging). However, combining <em>all</em> relevant quantities in a single plot is a different beast entirely. In addition, showing the <em>dependence</em> between the variables is often not a consideration (aside from adding p-values or <span class="math inline">\(\chi^2\)</span> statistics as text), even though it is perhaps the most relevant quantity.</p>
+<p>Visualizing subsets of these quantities is easy. For instance, observed quantities are often shown using heatmaps, with each cell representing a unique combination of values of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Conditional quantities are often shown using stacked or facetted barcharts (though visualizing both <span class="math inline">\(O_{X\mid Y}\)</span> and <span class="math inline">\(O_{Y\mid X}\)</span> in the same plot is challenging). However, combining <em>all</em> relevant quantities in a single plot is a different beast entirely. In addition, showing the <em>dependence</em> between the variables is often not a consideration (aside from adding p-values or <span class="math inline">\(\chi^2\)</span> statistics as text), even though it is perhaps the most relevant quantity.</p>
 <p>Kite-square plots attempt to solve these issues, displaying all relevant quantities in a sensible way while minimizing visual clutter, and providing a gestalt from which the user can quickly grasp the degree of dependence between the variables.</p>
 <p>The following sections explain the visual elements of a kite-square plot in detail.</p>
 </section>
@@ -309,7 +309,7 @@ Figure&nbsp;2: Elements related to joint quantities.
 <section id="conditional-and-marginal-quantities" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-and-marginal-quantities">Conditional and marginal quantities</h2>
 <p>The <strong>square</strong> (<a href="#fig-square-1" class="quarto-xref">Figure&nbsp;3 (a)</a>) is comprised if line segments intersecting the axes at the value of their respective <strong>marginal</strong> counts or probabilities. For instance, the corners of cell <span class="math inline">\((X=A,Y=U)\)</span> are defined at <span class="math inline">\((\mathbb{P}(X=A), \mathbb{P}(Y=U))\)</span>.</p>
-<p>The end points of the <strong>bars</strong> (<a href="#fig-square-2" class="quarto-xref">Figure&nbsp;3 (b)</a>) indicate <strong>conditional</strong> probabilities <span class="math inline">\(\mathbb{P}(X|Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y|X)\)</span>, respectively (or their count equivalent for unnormalized data). For instance, in the top-left cell <span class="math inline">\((X=A,Y=U)\)</span>, the blue bar represents <span class="math inline">\(\mathbb{P}(Y=U|X=A)\)</span>, while the red one represents <span class="math inline">\(\mathbb{P}(X=A|Y=U)\)</span>. Notice that the length of each bar is 1 (total probability).</p>
+<p>The end points of the <strong>bars</strong> (<a href="#fig-square-2" class="quarto-xref">Figure&nbsp;3 (b)</a>) indicate <strong>conditional</strong> probabilities <span class="math inline">\(\mathbb{P}(X\mid Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y\mid X)\)</span>, respectively (or their count equivalent for unnormalized data). For instance, in the top-left cell <span class="math inline">\((X=A,Y=U)\)</span>, the blue bar represents <span class="math inline">\(\mathbb{P}(Y=U\mid X=A)\)</span>, while the red one represents <span class="math inline">\(\mathbb{P}(X=A\mid Y=U)\)</span>. Notice that the length of each bar is 1 (total probability).</p>
 <div id="fig-square" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-square-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -333,7 +333,7 @@ Figure&nbsp;2: Elements related to joint quantities.
 <img src="kitesquare_files/figure-html/fig-square-2.png" class="img-fluid figure-img" data-ref-parent="fig-square" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-square-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Bars, indicating conditionals <span class="math inline">\(\mathbb{P}(X|Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y|X)\)</span>, or <span class="math inline">\(O_{X|Y}\)</span> and <span class="math inline">\(O_{Y|X}\)</span>, respectively
+(b) Bars, indicating conditionals <span class="math inline">\(\mathbb{P}(X\mid Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y\mid X)\)</span>, or <span class="math inline">\(O_{X\mid Y}\)</span> and <span class="math inline">\(O_{Y\mid X}\)</span>, respectively
 </figcaption>
 </figure>
 </div>
@@ -345,7 +345,7 @@ Figure&nbsp;3: Elements related to conditional and marginal probabilities.
 </figcaption>
 </figure>
 </div>
-<p>In the case of independence, the bars match the side of the square perfectly, since in that case <span class="math inline">\(\mathbb{P}(X)=\mathbb{P}(X|Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y)=\mathbb{P}(Y|X)\)</span>. As with the kite, bars sticking out of the square indicate higher values than expected (<a href="#fig-dependence-2" class="quarto-xref">Figure&nbsp;1 (b)</a>), whereas bars that fail to reach the square’s corner indicate lower values. Note that due to its fixed length, the bar appears shifted towards the overfull cell.</p>
+<p>In the case of independence, the bars match the side of the square perfectly, since in that case <span class="math inline">\(\mathbb{P}(X)=\mathbb{P}(X\mid Y)\)</span> and <span class="math inline">\(\mathbb{P}(Y)=\mathbb{P}(Y\mid X)\)</span>. As with the kite, bars sticking out of the square indicate higher values than expected (<a href="#fig-dependence-2" class="quarto-xref">Figure&nbsp;1 (b)</a>), whereas bars that fail to reach the square’s corner indicate lower values. Note that due to its fixed length, the bar appears shifted towards the overfull cell.</p>
 <div id="fig-itspatch" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-itspatch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -394,10 +394,10 @@ Figure&nbsp;4: Additional plot elements.
 \]</span> <span class="math display">\[
 =  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)}
 \]</span> <span class="math display">\[
-= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}
+= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)}
 \]</span> and hence</p>
 <p><span class="math display">\[
-\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
+\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X\mid Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y\mid X)\right)
 \]</span> In other words, the edges of each patch represent the difference between a expected (marginal) and observed conditional, and the area represents the contribution of each cell to the total <span class="math inline">\(\chi^2\)</span>. The larger the patches, the higher the degree of statistical dependency between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 </section>
 <section id="usage" class="level2">
