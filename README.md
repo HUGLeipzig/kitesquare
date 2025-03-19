@@ -285,7 +285,8 @@ of the **patches**
 representing that discrepancy is equal to $N\chi^2$ for unnormalized and
 $\frac{\chi^2}{N}$ for normalized data. This is because for
 
-$$\chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}$$ with
+$$\chi^2 := \sum_{\substack{X\in\{A,B\}\\ Y\in\{U,V\}}}\chi^2_{XY}$$
+with
 
 $$\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}}$$ we have
 
