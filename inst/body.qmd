@@ -1,0 +1,320 @@
+---
+title: Kite-Square Plots for Contingency Tables
+date-format: iso
+author: 
+  name: John Wiedenhöft
+  affiliation: 
+    name: University of Leipzig Medical Center
+    department: Institute for Human Genetics
+    address: Philipp-Rosenthal-Str. 55
+    postal-code: 04103
+    city: Leipzig
+    country: Germany
+    url: https://www.uniklinikum-leipzig.de/einrichtungen/humangenetik
+  orcid: 0000-0002-6935-1517
+  degrees: PhD
+citation:
+  id: kitesquare
+  url: https://cran.r-project.org/package=kitesquare
+google-scholar: true
+echo: false
+include: false
+warning: false
+error: false
+message: false
+---
+
+
+  
+```{r}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+theme_set(theme_bw())
+```
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+
+
+```{r}
+create_data <- function(xm, ym, bias=1){
+  
+  xlab=names(xm)
+  ylab=names(ym)
+  
+  xm <- xm/sum(xm)
+  ym <- ym/sum(ym)
+  print(xlab)
+  print(ylab)
+  expand.grid(Mx=xm, My=ym) %>% 
+        as_tibble() %>% print
+  
+  expand.grid(X=xlab, Y=ylab) %>% 
+        as_tibble() %>% print
+  
+  
+  df <-
+    bind_cols(
+      expand.grid(Mx=xm, My=ym) %>% 
+        as_tibble(),
+      expand.grid(X=xlab, Y=ylab) %>% 
+        as_tibble() 
+    ) %>% 
+    mutate(expected=Mx*My)%>% 
+    
+    
+    mutate(expected=100*expected) %>%
+    mutate(across(c(X, Y), as.factor)) %>% 
+    mutate(observed=expected*if_else(as.integer(X)==as.integer(Y), bias, 1)) 
+    
+  
+  df <- df %>%
+    select(X,Y,count=observed) %>% 
+    # mutate(X=factor(X, labels=xlab, levels=1:length(xlab)),
+    #        Y=factor(Y, labels=ylab, levels=1:length(ylab))) %>% 
+    arrange(X,Y)
+  
+  
+  df
+}
+
+
+```
+
+```{r}
+
+bias=3
+xm <- c(A=1,B=3)
+ym <- c(U=2,V=3)
+
+df_indep <- create_data(xm,ym)
+df_dep <- create_data(xm,ym,bias)
+
+```
+
+## Abstract 
+Kite-square plots (@fig-dependence) are a convenient way to visualize contingency tables, uniting various quantities of interest (@tbl-quantities). They get their name for two reasons:
+
+1. If the variables are independent, the plot resembles a kite inside a square (@fig-dependence-1). The more dependent the variables are, the more the plot deviates from that shape (@fig-dependence-2). This allows the user to quickly grasp variable dependence visually.
+2. It rhymes with $\chi^2$, a measure of statistical dependence and statistic in the eponymous test, which is visualized directly in the plot as the area of so-called *patches* (@fig-itspatch-2).
+
+```{r include=TRUE}
+#| label: fig-dependence
+#| fig-cap: Kite-square plots for independent and dependent variables.
+#| fig-subcap: 
+#|   - "Independent variables, the plot resembles a kite inside a square"
+#|   - "Dependent, top-left and bottom-right are higher, the others are lower than expected. Notice the patches in grey!"
+#| layout-ncol: 2
+
+kitesquare(df_indep, X, Y, count)
+kitesquare(df_dep, "X", "Y", "count")
+```
+The R package `kitesquare` implements these plots using `ggplot2`. It is available at <https://cran.r-project.org/package=kitesquare> as well as <https://github.com/HUGLeipzig/kitesquare>.
+
+## Introduction
+
+The relationship between two categorical random variables, say $X$ and $Y$, is often displayed in the form of a **contingency table** (also known as a 2x2 table if both variables are binary). If the joint probability distribution is known, such a table comes in **normalized** form, with values between 0 and 1 (probabilities). Usually, these tables come in an **unnormalized** form, containing observed counts for different combinations of values, from which the probabilities are estimated as fractions. 
+
+
+From either form, a number of interesting and statistically relevant quantities can be computed (@tbl-quantities).
+
+
+| quantity | unnormalized (counts) | normalized (probabilities, percentages) |
+|---------|--------------|-----------|
+| marginal | $M_X$ | $\mathbb{P}(X)$  |
+| expected joint | $E_{XY}$ | $\mathbb{P}(X)\mathbb{P}(Y)$ |
+| observed joint | $O_{XY}$ | $\mathbb{P}(X,Y)$ |
+| (observed) conditional | $O_{X|Y}$ | $\mathbb{P}(X|Y)$ |
+: Different quantities derived from contingency tables. {#tbl-quantities}
+
+Visualizing subsets of these quantities is easy. For instance, observed quantities are often shown using heatmaps, with each cell representing a unique combination of values of $X$ and $Y$. Conditional quantities are often shown using stacked or facetted barcharts (though visualizing both $O_{X|Y}$ and $O_{Y|X}$ in the same plot is challenging). However, combining *all* relevant quantities in a single plot is a different beast entirely. In addition, showing the *dependence* between the variables is often not a consideration (aside from adding p-values or $\chi^2$ statistics as text), even though it is perhaps the most relevant quantity.
+
+Kite-square plots attempt to solve these issues, displaying all relevant quantities in a sensible way while minimizing visual clutter, and providing a gestalt from which the user can quickly grasp the degree of dependence between the variables.
+
+The following sections explain the visual elements of a kite-square plot in detail.
+
+
+## Joint quantities
+
+
+The corners of the **kite** (@fig-kite-1) represent the theoretical, **expected joint** probabilities of $X$ and $Y$ if the two variables are independent, i.e. the product of the marginal probabilities. For count data, they represent the expected counts $E_{XY}$. 
+
+The **spars** (@fig-kite-2) represent the actual **observed joint** probabilities $\mathbb{P}(X,Y)$ or counts $O_{XY}$, respectively. The lengths of the spars are proportional to the observed quantities, and their values can be read off either axis at the position of the point. 
+
+```{r include=TRUE}
+#| label: fig-kite
+#| fig-cap: Elements related to joint quantities.
+#| fig-subcap: 
+#|   - Kite, representing $\mathbb{P}(X)\mathbb{P}(Y)$ or $E_{XY}$
+#|   - Spars, representing $\mathbb{P}(X,Y)$ or $O_{XY}$
+#| layout-ncol: 2
+
+
+kitesquare(df_dep, "X", "Y", "count", bars=F, spars=F, intersect=F, square=F, chi2=F, normalize=T)
+kitesquare(df_dep, "X", "Y", "count", bars=F, kite=F, intersect=F, square=F, chi2=F, normalize=T)
+```
+
+In the case of independence, the points are exactly at the corners of the kite, since $\mathbb{P}(X)\mathbb{P}(Y)=\mathbb{P}(X,Y)$ in that case (@fig-dependence-1). Spars that stick out of the kite indicate observations higher than expected based on the marginals, and spars that stay inside the kite indicate values lower than expected (@fig-dependence-2).
+
+
+
+## Conditional and marginal quantities
+
+The **square** (@fig-square-1) is comprised if line segments intersecting the axes at the value of their respective **marginal** counts or probabilities. For instance, the corners of cell $(X=A,Y=U)$ are defined at $(\mathbb{P}(X=A), \mathbb{P}(Y=U))$.
+
+The end points of the **bars** (@fig-square-2) indicate **conditional** probabilities $\mathbb{P}(X|Y)$ and $\mathbb{P}(Y|X)$, respectively (or their count equivalent for unnormalized data). For instance, in the top-left cell $(X=A,Y=U)$, the blue bar represents $\mathbb{P}(Y=U|X=A)$, while the red one represents $\mathbb{P}(X=A|Y=U)$. Notice that the length of each bar is 1 (total probability).
+
+```{r include=TRUE}
+#| label: fig-square
+#| fig-cap: Elements related to conditional and marginal probabilities.
+#| fig-subcap: 
+#|   - Square, indicating marginals $\mathbb{P}(X)$ and $\mathbb{P}(Y)$, or $M_X$ and $M_Y$, respectively.
+#|   - Bars, indicating conditionals $\mathbb{P}(X|Y)$ and $\mathbb{P}(Y|X)$, or $O_{X|Y}$ and $O_{Y|X}$, respectively
+#| layout-ncol: 2
+
+
+kitesquare(df_dep, "X", "Y", "count", kite=F, bars=F, spars=F, intersect=F, square=T, chi2=F, normalize=T)
+kitesquare(df_dep, "X", "Y", "count", kite=F, bars=T, spars=F, intersect=F, square=F, chi2=F, normalize=T)
+```
+
+
+In the case of independence, the bars match the side of the square perfectly, since in that case $\mathbb{P}(X)=\mathbb{P}(X|Y)$ and $\mathbb{P}(Y)=\mathbb{P}(Y|X)$. As with the kite, bars sticking out of the square indicate higher values than expected (@fig-dependence-2), whereas bars that fail to reach the square's corner indicate lower values. Note that due to its fixed length, the bar appears shifted towards the overfull cell.
+
+```{r include=TRUE}
+#| label: fig-itspatch
+#| fig-cap: Additional plot elements.
+#| fig-subcap: 
+#|   - Intersections, indicating marginals $\mathbb{P}(X)$ and $\mathbb{P}(Y)$, or $M_X$ and $M_Y$, respectively.
+#|   - Patches, indicating $\chi^2$ for counts, and $\frac{\chi^2}{N}$ for normalized data.
+#| layout-ncol: 2
+
+
+kitesquare(df_dep, "X", "Y", "count", kite=F, bars=F, spars=F, intersect=T, square=F, chi2=F, normalize=T)
+kitesquare(df_dep, "X", "Y", "count", kite=F, bars=F, spars=F, intersect=F, square=F, chi2=T, normalize=T)
+```
+
+
+Note that the axis labels are colored according to the bars with which they are associated. For clarity, kite-square plots have a colored point at the **intersections** of bars and axes, representing marginal probabilities/counts (@fig-itspatch-1); notice that the intersections for $X$ sit on the bars for $Y$ and vice versa (@fig-dependence).
+
+Intuitively, the discrepancy between the square and the bars provides a measure of association between $X$ and $Y$. It turns out that the area of the **patches** (@fig-itspatch-2) representing that discrepancy is **equal to $N\chi^2$ for unnormalized and $\frac{\chi^2}{N}$ for normalized data**. This is because for
+
+$$
+\chi^2 := \sum_{\substack{X\in\{A,B\}\\Y\in\{U,V\}}}\chi^2_{XY}   
+$$
+with
+$$
+\chi^2_{XY} := \frac{(E_{XY}-O_{XY})^2}{E_{XY}} 
+$$
+we have
+$$
+\chi^2_{XY}=    \frac{(N\mathbb{P}(X)\mathbb{P}(Y) - N\mathbb{P}(X,Y) )^2}{N\mathbb{P}(X)\mathbb{P}(Y)} 
+$$
+$$
+=  \frac{N^2}{N} \frac{(\mathbb{P}(X)\mathbb{P}(Y) - \mathbb{P}(X,Y) )^2}{\mathbb{P}(X)\mathbb{P}(Y)} 
+$$
+$$
+= N \frac{\left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\mathbb{P}(Y)   \left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)\mathbb{P}(X)}{\mathbb{P}(X)\mathbb{P}(Y)} 
+$$
+and hence
+$$
+\chi^2_{XY} = N  \left(\strut\mathbb{P}(X)-\mathbb{P}(X|Y)\right)\left(\strut\mathbb{P}(Y)-\mathbb{P}(Y|X)\right)
+$$
+In other words, the edges of each patch represent the difference between a expected (marginal) and observed conditional, and the area represents the contribution of each cell to the total $\chi^2$. The larger the patches, the higher the degree of statistical dependency between  $X$ and $Y$.
+
+## Usage
+
+Creating kite-square plots in R is easy:
+```{r}
+df <- df_dep
+```
+
+```{r}
+#| eval: false
+#| echo: true
+#| include: true
+kitesquare(df, X, Y, count)
+```
+
+
+The function `kitesquare()` expects a contingency table as a data frame or tibble `df` in long form, i.e. one column for each variable containing the different category labels, as well as a column contaning counts (see @tbl-contingency for the tables that generate @fig-dependence).  The second and third arguments are the names of columns contaning the categories for each variable. The fourth argument is the name of the count column. The table may contain multiple lines per category combination; the counts are added together in that case. Missing category combinations are assumed to have a count of 0. The count column is optional; if none is provided, the number of occurrences of each category combination is assumed as counts instead.
+
+
+```{r include=TRUE}
+#| label: tbl-contingency
+#| tbl-cap: Contingency tables with counts for variables $X\in \{A,B\}$ and $Y \in {U,V}$.
+#| tbl-subcap: 
+#|   - Independent variables
+#|   - Dependent variables
+#| layout-ncol: 2
+
+kable(df_indep)
+kable(df_dep)
+```
+
+Individual plotting elements can be turned on and off be setting the following arguments to TRUE or FALSE:
+
+* `kite`
+* `spars`
+* `square`
+* `chi2`
+* `bars_x`
+* `bars_y`
+* `bars`
+* `intersect_x`
+* `intersect_y`
+* `intersect`
+
+Axes can be labeled as percentages or counts by setting `normalize` to `TRUE` or `FALSE`, respectively.
+
+For 2x2 tables, the kite-square plot is **centered** by default, i.e. the left and bottom axes are reversed so that the elements of each cell meet in the middle. This is not possible for variables wit more than two levels. The Boolean options
+
+* `center_x`
+* `center_y`
+* `center`
+
+control whether (@fig-centered) or not (@fig-noncentered) centering should be performed for binary $X$, $Y$ or both. For larger non-centered plots, it is sometimes helpful to **fill** the space between bars and their associated axis (an area representing $\mathbb{P}(X,Y)$) using
+
+* `fill_x`
+* `fill_y`
+* `fill`
+
+```{r}
+xm_large <- c(A=3,B=2,C=4,D=1)
+ym_large <- c(U=1,V=2,W=1)
+df_3x4 <- create_data(xm_large, ym_large, bias=3)
+df_2x4 <- create_data(xm_large, ym_large[1:2], bias=3)
+
+```
+
+```{r}
+#| include: true
+#| echo: true
+#| result: true
+#| fig-cap: Kite-square plot for a 2x4 matrix, with the binary variable centered.
+#| label: fig-centered
+
+kitesquare(df_2x4, X, Y, count, fill=TRUE)
+```
+
+```{r}
+#| include: true
+#| echo: true
+#| result: true
+#| fig-cap: Kite-square plot for a 2x4 matrix, with the binary variable non-centered.
+#| label: fig-noncentered
+
+kitesquare(df_2x4, X, Y, count, fill=TRUE, center=FALSE)
+```
+
+
+For details and further plotting options, please refer to the function documentation using `?kitesquare`.
+

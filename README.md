@@ -13,9 +13,9 @@ John Wiedenhöft
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/kitesquare.png)](https://CRAN.R-project.org/package=kitesquare)
-[![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Abstract
@@ -397,7 +397,7 @@ control whether
 (<a href="#fig-noncentered" class="quarto-xref">Figure 6</a>) centering
 should be performed for binary $X$, $Y$ or both. For larger non-centered
 plots, it is sometimes helpful to **fill** the space between bars and
-their associated axis using
+their associated axis (an area representing $\mathbb{P}(X,Y)$) using
 
 - `fill_x`
 - `fill_y`
