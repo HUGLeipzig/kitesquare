@@ -1,6 +1,6 @@
 Package: kitesquare
 Title: Visualize Contingency Tables Using Kite-Square Plots
-Version: 0.0.1
+Version: 0.0.2
 Authors@R:
 	person("John", "Wiedenhöft", , "john.wiedenhoeft@medizin.uni-leipzig.de", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-6935-1517"))
 Description: Create a kite-square plot for contingency tables using 'ggplot2', to display their relevant quantities in a single figure (marginal, conditional, expected, observed, chi-squared). The plot resembles a flying kite inside a square if the variables are independent, and deviates from this the more dependence exists.
