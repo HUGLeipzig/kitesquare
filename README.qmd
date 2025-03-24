@@ -22,7 +22,8 @@ source("R/kitesquare.R")
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/kitesquare)](https://CRAN.R-project.org/package=kitesquare)
 [![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/kitesquare)](https://www.r-pkg.org/pkg/kitesquare)
+[![CRAN RStudio mirror downloads (monthly)](http://cranlogs.r-pkg.org/badges/kitesquare)](https://www.r-pkg.org/pkg/kitesquare)
+[![CRAN RStudio mirror downloads (total)](https://cranlogs.r-pkg.org/badges/grand-total/kitesquare)](https://www.r-pkg.org/pkg/kitesquare)
 <!-- badges: end -->
 
 {{< include inst/body.qmd >}}
