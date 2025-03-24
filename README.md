@@ -1,6 +1,6 @@
 # Kite-Square Plots for Contingency Tables
 John Wiedenhöft
-2025-03-19
+2025-03-24
 
 - [Abstract](#abstract)
 - [Introduction](#introduction)
@@ -14,8 +14,10 @@ John Wiedenhöft
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/kitesquare.png)](https://CRAN.R-project.org/package=kitesquare)
+status](https://www.r-pkg.org/badges/version/kitesquare)](https://CRAN.R-project.org/package=kitesquare)
 [![R-CMD-check](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HUGLeipzig/kitesquare/actions/workflows/R-CMD-check.yaml)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/kitesquare)](https://www.r-pkg.org/pkg/kitesquare)
 <!-- badges: end -->
 
 ## Abstract
@@ -285,7 +287,7 @@ of the **patches**
 representing that discrepancy is equal to $N\chi^2$ for unnormalized and
 $\frac{\chi^2}{N}$ for normalized data. This is because for
 
-$$\chi^2 := \sum_{\substack{X\in\{A,B\}\\ Y\in\{U,V\}}}\chi^2_{XY}$$
+$$\chi^2 := \sum_{\substack{X\in\{A,B\},\\ Y\in\{U,V\}}}\chi^2_{XY}$$
 
 with
 
